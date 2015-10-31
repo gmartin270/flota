@@ -9,11 +9,11 @@ import org.web3.flota.bussiness.exceptions.RemoveVehiculoException;
 import org.web3.flota.model.VehiculoDTO;
 
 public class VehiculoBO {
-	private VehiculoBO instance;
+	private static VehiculoBO instance;
 	
 	private VehiculoBO(){};
 	
-	public VehiculoBO getInstance(){
+	public static VehiculoBO getInstance(){
 		if(instance == null)
 			instance = new VehiculoBO();
 		

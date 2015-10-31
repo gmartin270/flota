@@ -7,11 +7,11 @@ import org.web3.flota.model.ClienteDTO;
 
 public class ClienteBO {
 	
-	private ClienteBO instance;
+	private static ClienteBO instance;
 	
 	private ClienteBO(){};
 	
-	public ClienteBO getInstance(){
+	public static ClienteBO getInstance(){
 		if(instance == null)
 			instance = new ClienteBO();
 		
