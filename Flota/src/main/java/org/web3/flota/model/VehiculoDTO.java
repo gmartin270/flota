@@ -11,6 +11,7 @@ public class VehiculoDTO {
 	private String dominio;
 	private CedulaDTO cedulaVerde;
 	private List<CedulaDTO> cedulasAzul;
+	private String categoria;
 	
 	public String getId() {
 		return id;
@@ -59,5 +60,11 @@ public class VehiculoDTO {
 	}
 	public void setCedulasAzul(List<CedulaDTO> cedulasAzul) {
 		this.cedulasAzul = cedulasAzul;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 }
