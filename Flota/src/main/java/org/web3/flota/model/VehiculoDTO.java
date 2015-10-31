@@ -1,11 +1,16 @@
 package org.web3.flota.model;
 
+import java.util.List;
+
 public class VehiculoDTO {
 	private String id;
 	private ModeloDTO modelo;
 	private PolizaDTO poliza;
 	private TipoVehiculoDTO tipo;
 	private EstadoVehiculoDTO estado;
+	private String dominio;
+	private CedulaDTO cedulaVerde;
+	private List<CedulaDTO> cedulasAzul;
 	
 	public String getId() {
 		return id;
@@ -36,5 +41,23 @@ public class VehiculoDTO {
 	}
 	public void setEstado(EstadoVehiculoDTO estado) {
 		this.estado = estado;
+	}
+	public String getDominio() {
+		return dominio;
+	}
+	public void setDominio(String dominio) {
+		this.dominio = dominio;
+	}
+	public CedulaDTO getCedulaVerde() {
+		return cedulaVerde;
+	}
+	public void setCedulaVerde(CedulaDTO cedulaVerde) {
+		this.cedulaVerde = cedulaVerde;
+	}
+	public List<CedulaDTO> getCedulasAzul() {
+		return cedulasAzul;
+	}
+	public void setCedulasAzul(List<CedulaDTO> cedulasAzul) {
+		this.cedulasAzul = cedulasAzul;
 	}
 }
