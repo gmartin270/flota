@@ -1,6 +1,6 @@
 package org.web3.flota.bussiness.exceptions;
 
-public class CreateClienteException extends Throwable {
+public class CreateObjectException extends Throwable {
 
 	/**
 	 * 
@@ -9,7 +9,7 @@ public class CreateClienteException extends Throwable {
 	private String mensaje;
 	private String codigo;
 	
-	public CreateClienteException(String mensaje){
+	public CreateObjectException(String mensaje){
 		this.mensaje = mensaje;
 	}
 	

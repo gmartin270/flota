@@ -1,8 +1,8 @@
 package org.web3.flota.bussiness;
 
-import org.web3.flota.bussiness.exceptions.CreateClienteException;
-import org.web3.flota.bussiness.exceptions.EditClienteException;
-import org.web3.flota.bussiness.exceptions.RemoveClienteException;
+import org.web3.flota.bussiness.exceptions.CreateObjectException;
+import org.web3.flota.bussiness.exceptions.EditObjectException;
+import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.model.ClienteDTO;
 
 public class ClienteBO {
@@ -18,15 +18,15 @@ public class ClienteBO {
 		return instance;
 	}
 	
-	public void createCliente(ClienteDTO cliente) throws CreateClienteException{
+	public void createCliente(ClienteDTO cliente) throws CreateObjectException{
 		
 	}
 	
-	public void editCliente(String id, ClienteDTO cliente) throws EditClienteException{
+	public void editCliente(String id, ClienteDTO cliente) throws EditObjectException{
 		
 	}
 	
-	public void removeCliente (String id) throws RemoveClienteException{
+	public void removeCliente (String id) throws RemoveObjectException{
 		
 	}
 }

@@ -1,15 +1,15 @@
 package org.web3.flota.bussiness.exceptions;
 
-public class RemoveVehiculoException extends Throwable {
+public class RemoveObjectException extends Throwable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4416006391632727036L;
+	private static final long serialVersionUID = 6995065915686767647L;
 	private String mensaje;
 	private String codigo;
 	
-	public RemoveVehiculoException(String mensaje){
+	public RemoveObjectException(String mensaje){
 		this.mensaje = mensaje;
 	}
 	
