@@ -1,5 +1,6 @@
 package org.web3.flota.bussiness.facade;
 
+import org.web3.flota.bussiness.AbstractObjectBO;
 import org.web3.flota.bussiness.ClienteBO;
 import org.web3.flota.bussiness.VehiculoBO;
 import org.web3.flota.bussiness.exceptions.CreateObjectException;
@@ -21,13 +22,15 @@ public class CreateFacade {
 		return instance;
 	}
 	
-	public void create(Object objeto) throws CreateObjectException {
-		if(objeto instanceof VehiculoDTO) {
-			VehiculoBO vehiculoBo = (VehiculoBO)FactoryObjectBO.getInstance().createObjectBO(objeto);
-			vehiculoBo.createVehiculo((VehiculoDTO)objeto);
-		} else if(objeto instanceof ClienteDTO) {
-			ClienteBO cliente = (ClienteBO)FactoryObjectBO.getInstance().createObjectBO(objeto);
-			cliente.createCliente((ClienteDTO)objeto);
+	public void create(Object objetoDTO) throws CreateObjectException {
+		AbstractObjectBO bo = null;
+		
+		if(objetoDTO instanceof VehiculoDTO) {
+			bo = (VehiculoBO)FactoryObjectBO.getInstance().createObjectBO(objetoDTO);			
+		} else if(objetoDTO instanceof ClienteDTO) {
+			bo = (ClienteBO)FactoryObjectBO.getInstance().createObjectBO(objetoDTO);
 		}
+		
+		bo.createObject(objetoDTO);
 	}	
 }

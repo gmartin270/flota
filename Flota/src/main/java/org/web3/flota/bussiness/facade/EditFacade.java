@@ -1,5 +1,6 @@
 package org.web3.flota.bussiness.facade;
 
+import org.web3.flota.bussiness.AbstractObjectBO;
 import org.web3.flota.bussiness.ClienteBO;
 import org.web3.flota.bussiness.VehiculoBO;
 import org.web3.flota.bussiness.exceptions.EditObjectException;
@@ -21,13 +22,17 @@ public class EditFacade {
 		return instance;
 	}
 	
-	public void edit(String id, Object objeto) throws EditObjectException{
-		if(objeto instanceof VehiculoDTO) {
-			VehiculoBO vehiculoBo = (VehiculoBO)FactoryObjectBO.getInstance().createObjectBO(objeto);
-			vehiculoBo.editVehiculo(id, (VehiculoDTO)objeto);
-		} else if(objeto instanceof ClienteDTO) {
-			ClienteBO cliente = (ClienteBO)FactoryObjectBO.getInstance().createObjectBO(objeto);
-			cliente.editCliente(id, (ClienteDTO)objeto);
+	public void edit(String id, Object objetoDTO) throws EditObjectException{
+		AbstractObjectBO bo = null;
+		
+		if(objetoDTO instanceof VehiculoDTO) {
+			bo = (VehiculoBO)FactoryObjectBO.getInstance().createObjectBO(objetoDTO);
+			
+		} else if(objetoDTO instanceof ClienteDTO) {
+			bo = (ClienteBO)FactoryObjectBO.getInstance().createObjectBO(objetoDTO);
+			
 		}
+		
+		bo.editObject(id, objetoDTO);
 	}	
 }

@@ -5,7 +5,7 @@ import org.web3.flota.bussiness.exceptions.EditObjectException;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.model.ClienteDTO;
 
-public class ClienteBO {
+public class ClienteBO extends AbstractObjectBO {
 	
 	private static ClienteBO instance;
 	
@@ -18,15 +18,18 @@ public class ClienteBO {
 		return instance;
 	}
 	
-	public void createCliente(ClienteDTO cliente) throws CreateObjectException{
+	@Override
+	public void createObject(Object clienteDTO) throws CreateObjectException{
 		
 	}
 	
-	public void editCliente(String id, ClienteDTO cliente) throws EditObjectException{
+	@Override
+	public void editObject(String id, Object clienteDTO) throws EditObjectException{
 		
 	}
 	
-	public void removeCliente (String id) throws RemoveObjectException{
+	@Override
+	public void removeObject(Object clienteDTO) throws RemoveObjectException{
 		
 	}
 }

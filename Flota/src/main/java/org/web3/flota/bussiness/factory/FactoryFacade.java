@@ -19,23 +19,19 @@ public class FactoryFacade implements IFactoryFacade {
 		return instance;
 	}
 	
-	public Object getFacade(String tipo){
+	public Object getFacade(Class<?> clazz){
+		Object facade = null;
 		
-		switch (tipo) {
-		case "create":
-			return (Object)CreateFacade.getInstance();
-		
-		case "edit":
-			return (Object)EditFacade.getInstance();
-			
-		case "remove":
-			return (Object)RemoveFacade.getInstance();
-		
-		case "search":
-			return (Object)SearchFacade.getInstance();
-			
-		default:
-			return null;
+		if(clazz.equals(CreateFacade.class)){
+			facade = (Object)CreateFacade.getInstance();
+		}else if(clazz.equals(EditFacade.class)){
+			facade = (Object)EditFacade.getInstance();
+		}else if(clazz.equals(RemoveFacade.class)){
+			facade = (Object)RemoveFacade.getInstance();
+		}else if(clazz.equals(SearchFacade.class)){
+			facade = (Object)SearchFacade.getInstance();
 		}
+		
+		return facade;
 	}
 }

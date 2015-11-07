@@ -9,12 +9,12 @@ import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.model.VehiculoDTO;
 import org.web3.flota.persist.VehiculoDAO;
 
-public class VehiculoBO {
+public class VehiculoBO extends AbstractObjectBO{
 	private static VehiculoBO instance;
-	private VehiculoDAO vehiculoDAO;
+	private VehiculoDAO vehiculoDTODAO;
 	
 	private VehiculoBO(){
-		vehiculoDAO = VehiculoDAO.getInstance(); 
+		vehiculoDTODAO = VehiculoDAO.getInstance(); 
 	};
 	
 	public static VehiculoBO getInstance(){
@@ -25,32 +25,35 @@ public class VehiculoBO {
 	}
 	
 	public VehiculoDTO getById(String id){
-		VehiculoDTO vehiculo = new VehiculoDTO();
+		VehiculoDTO vehiculoDTO = new VehiculoDTO();
 		
-		return vehiculo;
+		return vehiculoDTO;
 	}
 	
 	public List<VehiculoDTO> getByCategoria(String Categoria){
-		List<VehiculoDTO> vehiculos = new ArrayList<VehiculoDTO>();
+		List<VehiculoDTO> vehiculoDTOs = new ArrayList<VehiculoDTO>();
 		
-		return vehiculos;
+		return vehiculoDTOs;
 	}
 	
-	public List<VehiculoDTO> getByVehiculo(VehiculoDTO vehiculoToSearch){
-		List<VehiculoDTO> vehiculos = new ArrayList<VehiculoDTO>();
+	public List<VehiculoDTO> getByVehiculo(VehiculoDTO vehiculoDTOToSearch){
+		List<VehiculoDTO> vehiculoDTOs = new ArrayList<VehiculoDTO>();
 		
-		return vehiculos;
+		return vehiculoDTOs;
 	}
 	
-	public void createVehiculo(VehiculoDTO vehiculo) throws CreateObjectException{
-		vehiculoDAO.saveOrUpdate(vehiculo);
+	@Override
+	public void createObject(Object vehiculoDTODTO) throws CreateObjectException{
+		vehiculoDTODAO.saveOrUpdate(vehiculoDTODTO);
 	}
 	
-	public void editVehiculo(String id, VehiculoDTO vehiculo) throws EditObjectException{
+	@Override
+	public void editObject(String id, Object vehiculoDTO) throws EditObjectException{
 		
 	}
 	
-	public void removeVehiculo(String id) throws RemoveObjectException{
+	@Override
+	public void removeObject(Object vehiculoDTO) throws RemoveObjectException{
 		
 	}
 }

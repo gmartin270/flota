@@ -19,12 +19,12 @@ public class FactoryObjectBO implements IFactoryObjectBO {
 	}
 	
 	@Override
-	public Object createObjectBO(Object object) {
+	public Object createObjectBO(Object objetoDTO) {
 		Object objectBO = null;
 		
-		if(object instanceof VehiculoDTO) {
+		if(objetoDTO instanceof VehiculoDTO) {
 			objectBO = VehiculoBO.getInstance();
-		} else if(object instanceof ClienteDTO) {
+		} else if(objetoDTO instanceof ClienteDTO) {
 			objectBO = ClienteBO.getInstance();
 		}
 		

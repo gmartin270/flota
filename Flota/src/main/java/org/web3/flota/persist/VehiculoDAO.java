@@ -8,7 +8,9 @@ import org.web3.flota.model.VehiculoDTO;
 
 public class VehiculoDAO {
 	private static VehiculoDAO instance;
+	
 	private VehiculoDAO(){};
+	
 	private List<VehiculoDTO> vehiculoDTOs = new ArrayList<VehiculoDTO>();
 	
 	public static VehiculoDAO getInstance(){
@@ -17,8 +19,8 @@ public class VehiculoDAO {
 		return instance;
 	}
 	
-	public void saveOrUpdate(VehiculoDTO vehiculo) {
-		vehiculoDTOs.add(vehiculo);
+	public void saveOrUpdate(Object vehiculoDTO) {
+		vehiculoDTOs.add((VehiculoDTO)vehiculoDTO);
 	}
 	
 	public List<VehiculoDTO> getAll() {
