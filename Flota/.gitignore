@@ -1,0 +1,6 @@
+/target/
+
+.project
+.classpath
+/.settings/*.*
+Desarrollo/Personal/Facultad/workspace/Flota/target/m2e-wtp/web-resources/*.*
