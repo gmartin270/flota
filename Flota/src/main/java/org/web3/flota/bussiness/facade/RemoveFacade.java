@@ -1,15 +1,15 @@
-package org.web3.flota.bussiness;
+package org.web3.flota.bussiness.facade;
 
+import org.web3.flota.bussiness.ClienteBO;
+import org.web3.flota.bussiness.VehiculoBO;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
+import org.web3.flota.bussiness.factory.FactoryObjectBO;
 
 public class RemoveFacade {
 	
 	private static RemoveFacade instance;
-	private IFactoryObjectBO factory;
 	
-	private RemoveFacade(){
-		factory = new FactoryObjectBO();
-	};
+	private RemoveFacade(){};
 	
 	public static RemoveFacade getInstance(){
 		
@@ -23,11 +23,11 @@ public class RemoveFacade {
 		
 		switch(clase){
 		case "vehiculo":
-			VehiculoBO vehiculo = (VehiculoBO)factory.createObjectBO(clase);
+			VehiculoBO vehiculo = (VehiculoBO)FactoryObjectBO.getInstance().createObjectBO(clase);
 			vehiculo.removeVehiculo(id);
 			
 		case "cliente":
-			ClienteBO cliente = (ClienteBO)factory.createObjectBO(clase);
+			ClienteBO cliente = (ClienteBO)FactoryObjectBO.getInstance().createObjectBO(clase);
 			cliente.removeCliente(id);
 		}
 	}	

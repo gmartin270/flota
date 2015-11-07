@@ -7,11 +7,15 @@ import org.web3.flota.bussiness.exceptions.CreateObjectException;
 import org.web3.flota.bussiness.exceptions.EditObjectException;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.model.VehiculoDTO;
+import org.web3.flota.persist.VehiculoDAO;
 
 public class VehiculoBO {
 	private static VehiculoBO instance;
+	private VehiculoDAO vehiculoDAO;
 	
-	private VehiculoBO(){};
+	private VehiculoBO(){
+		vehiculoDAO = VehiculoDAO.getInstance(); 
+	};
 	
 	public static VehiculoBO getInstance(){
 		if(instance == null)
@@ -39,7 +43,7 @@ public class VehiculoBO {
 	}
 	
 	public void createVehiculo(VehiculoDTO vehiculo) throws CreateObjectException{
-		
+		vehiculoDAO.saveOrUpdate(vehiculo);
 	}
 	
 	public void editVehiculo(String id, VehiculoDTO vehiculo) throws EditObjectException{

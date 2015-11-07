@@ -1,4 +1,4 @@
-package org.web3.flota.bussiness;
+package org.web3.flota.bussiness.factory;
 
 public interface IFactoryFacade {
 	
