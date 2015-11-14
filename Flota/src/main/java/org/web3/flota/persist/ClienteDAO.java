@@ -3,21 +3,21 @@ package org.web3.flota.persist;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehiculoDAO extends GenericDAO{
-	private static VehiculoDAO instance;
+public class ClienteDAO extends GenericDAO{
+	private static ClienteDAO instance;
 	
-	private VehiculoDAO(){};
+	private ClienteDAO(){};
 	
-	private List<Object> vehiculoDTOs = new ArrayList<Object>();
+	private List<Object> clienteDTOs = new ArrayList<Object>();
 	
-	public static VehiculoDAO getInstance(){
+	public static ClienteDAO getInstance(){
 		if(instance == null)
-			instance = new VehiculoDAO();
+			instance = new ClienteDAO();
 		return instance;
 	}
 	
 	public void saveOrUpdate(Object objectDTO) {
-		vehiculoDTOs.add(objectDTO);
+		clienteDTOs.add((Object)objectDTO);
 	}
 	
 	public void create(Object objectDTO){
@@ -48,7 +48,7 @@ public class VehiculoDAO extends GenericDAO{
 	}
 	
 	public List<Object> getAll() {
-		return vehiculoDTOs;
+		return clienteDTOs;
 	}
 	
 	public Object get(Class<?> clazz, String id){

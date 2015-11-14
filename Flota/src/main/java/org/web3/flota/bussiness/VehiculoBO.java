@@ -7,14 +7,16 @@ import org.web3.flota.bussiness.exceptions.CreateObjectException;
 import org.web3.flota.bussiness.exceptions.EditObjectException;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.model.VehiculoDTO;
+import org.web3.flota.persist.FactoryObjectDAO;
+import org.web3.flota.persist.IGenericDAO;
 import org.web3.flota.persist.VehiculoDAO;
 
 public class VehiculoBO extends AbstractObjectBO{
 	private static VehiculoBO instance;
-	private VehiculoDAO vehiculoDTODAO;
+	private IGenericDAO dao;
 	
 	private VehiculoBO(){
-		vehiculoDTODAO = VehiculoDAO.getInstance(); 
+		dao = FactoryObjectDAO.createObjectDAO(VehiculoDAO.class);
 	};
 	
 	public static VehiculoBO getInstance(){
@@ -36,20 +38,26 @@ public class VehiculoBO extends AbstractObjectBO{
 		return vehiculoDTOs;
 	}
 	
-	public List<VehiculoDTO> getByVehiculo(VehiculoDTO vehiculoDTOToSearch){
-		List<VehiculoDTO> vehiculoDTOs = new ArrayList<VehiculoDTO>();
+	public List<Object> getByVehiculo(Object vehiculoDTOToSearch){
+		List<Object> vehiculoDTOs = new ArrayList<Object>();
 		
 		return vehiculoDTOs;
 	}
 	
 	@Override
-	public void createObject(Object vehiculoDTODTO) throws CreateObjectException{
-		vehiculoDTODAO.saveOrUpdate(vehiculoDTODTO);
+	public void createObject(Object vehiculoDTO) throws CreateObjectException{
+		dao.saveOrUpdate(vehiculoDTO);
 	}
 	
 	@Override
 	public void editObject(String id, Object vehiculoDTO) throws EditObjectException{
+		VehiculoDTO vehiculo = (VehiculoDTO)vehiculoDTO;
 		
+		if(vehiculo.getId() != null)
+			dao.saveOrUpdate(vehiculoDTO);
+		else
+			throw new EditObjectException("El vehiculo que desea editar no es válido");
+			
 	}
 	
 	@Override
