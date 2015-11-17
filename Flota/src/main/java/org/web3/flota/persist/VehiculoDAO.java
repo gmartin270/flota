@@ -3,8 +3,12 @@ package org.web3.flota.persist;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.web3.flota.persist.hibernate.HibernateUtil;
+
 public class VehiculoDAO extends GenericDAO{
 	private static VehiculoDAO instance;
+	Session session;
 	
 	private VehiculoDAO(){};
 	
@@ -17,7 +21,15 @@ public class VehiculoDAO extends GenericDAO{
 	}
 	
 	public void saveOrUpdate(Object objectDTO) {
-		vehiculoDTOs.add(objectDTO);
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
+		session.beginTransaction();
+		//vehiculoDTOs.add(objectDTO);
+		session.persist(objectDTO);
+		session.getTransaction().commit();
+		
+		//HibernateUtil.getSessionFactory().close();
 	}
 	
 	public void create(Object objectDTO){
@@ -60,5 +72,7 @@ public class VehiculoDAO extends GenericDAO{
 		//TODO: cambiar el retorno null
 				return null;
 	}
+	
+	
 
 }

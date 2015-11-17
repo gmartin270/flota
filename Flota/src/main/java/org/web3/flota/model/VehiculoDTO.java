@@ -13,6 +13,8 @@ public class VehiculoDTO {
 	private List<CedulaDTO> cedulasAzul;
 	private String categoria;
 	
+	public VehiculoDTO(){};
+	
 	public String getId() {
 		return id;
 	}
