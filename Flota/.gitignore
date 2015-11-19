@@ -4,3 +4,5 @@
 .classpath
 /.settings/*.*
 Desarrollo/Personal/Facultad/workspace/Flota/target/m2e-wtp/web-resources/*.*
+.tern-project
+.faces-config.xml.jsfdia
