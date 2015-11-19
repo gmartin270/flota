@@ -7,7 +7,7 @@
 	<h:form>
 		<p:growl id="messages" />
 		<p:menubar>
-			<p:submenu label="Principal" icon="ui-icon-home" />
+			<p:menuitem value="Principal" url="Home.xhtml" style="height: auto;" icon="ui-icon-home"/>
 			<p:submenu label="Operar" icon="ui-icon-document">
 				<p:menuitem value="Vehiculos" url="Vehiculos.xhtml" style="height: auto;" />
 				<p:menuitem value="Clientes" url="Clientes.xhtml" style="height: auto;" />
@@ -17,7 +17,7 @@
 				<p:menuitem value="Adm. Usuarios" url="#" style="height: auto;" />
 			</p:submenu>
 			<f:facet name="options">
-				<p:commandButton type="button" value="Logout" icon="ui-icon-close" />
+				<p:button value="Logout" icon="ui-icon-close" outcome="Login.xhtml" />
 			</f:facet>
 		</p:menubar>
 	</h:form>
