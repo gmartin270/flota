@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class AsignacionDTO {
 	private String id;
-	private ClienteDTO persona;
+	private ClienteDTO cliente;
 	private VehiculoDTO vehiculo;
 	private Date fechaEntrega;
 	private Date fechaDevolucion;
@@ -15,11 +15,11 @@ public class AsignacionDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public ClienteDTO getPersona() {
-		return persona;
+	public ClienteDTO getCliente() {
+		return cliente;
 	}
-	public void setPersona(ClienteDTO persona) {
-		this.persona = persona;
+	public void setCliente(ClienteDTO cliente) {
+		this.cliente = cliente;
 	}
 	public VehiculoDTO getVehiculo() {
 		return vehiculo;

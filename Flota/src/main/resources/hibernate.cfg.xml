@@ -3,15 +3,29 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost/flota</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/flota</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">patoxkgm</property>
 		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.enable_lazy_load_no_trans">true</property>
 		<property name="hibernate.connection.pool_size">1</property>
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">update</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<property name="hibernate.show_sql">true</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 		
+		<mapping resource="org/web3/flota/model/Asignacion.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Cedula.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Cliente.hbm.xml" />
+		<mapping resource="org/web3/flota/model/EstadoVehiculo.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Marca.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Modelo.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Pais.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Poliza.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Reputacion.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Seguro.hbm.xml" />
+		<mapping resource="org/web3/flota/model/TipoDocumento.hbm.xml" />
+		<mapping resource="org/web3/flota/model/TipoVehiculo.hbm.xml" />
 		<mapping resource="org/web3/flota/model/Vehiculo.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

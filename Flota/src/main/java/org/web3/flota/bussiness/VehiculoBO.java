@@ -1,22 +1,22 @@
 package org.web3.flota.bussiness;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.web3.flota.bussiness.exceptions.CreateObjectException;
 import org.web3.flota.bussiness.exceptions.EditObjectException;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
+import org.web3.flota.bussiness.exceptions.SearchObjectException;
+import org.web3.flota.bussiness.factory.IObjectBO;
 import org.web3.flota.model.VehiculoDTO;
 import org.web3.flota.persist.FactoryObjectDAO;
 import org.web3.flota.persist.IGenericDAO;
-import org.web3.flota.persist.VehiculoDAO;
 
-public class VehiculoBO extends AbstractObjectBO{
+public class VehiculoBO implements IObjectBO{
 	private static VehiculoBO instance;
 	private IGenericDAO dao;
 	
 	private VehiculoBO(){
-		dao = FactoryObjectDAO.createObjectDAO(VehiculoDAO.class);
+		dao = FactoryObjectDAO.createObjectDAO(VehiculoDTO.class);
 	};
 	
 	public static VehiculoBO getInstance(){
@@ -27,41 +27,37 @@ public class VehiculoBO extends AbstractObjectBO{
 	}
 	
 	public VehiculoDTO getById(String id){
-		VehiculoDTO vehiculoDTO = new VehiculoDTO();
-		
-		return vehiculoDTO;
+		return null;
 	}
 	
 	public List<VehiculoDTO> getByCategoria(String Categoria){
-		List<VehiculoDTO> vehiculoDTOs = new ArrayList<VehiculoDTO>();
-		
-		return vehiculoDTOs;
+		return null;
 	}
 	
 	public List<Object> getByVehiculo(Object vehiculoDTOToSearch){
-		List<Object> vehiculoDTOs = new ArrayList<Object>();
-		
-		return vehiculoDTOs;
+		return null;
 	}
 	
-	@Override
+	public List<Object> getAll() throws SearchObjectException{
+		return dao.getAll();
+	}
+	
 	public void createObject(Object vehiculoDTO) throws CreateObjectException{
-		dao.saveOrUpdate(vehiculoDTO);
+		dao.create(vehiculoDTO);
 	}
 	
-	@Override
 	public void editObject(String id, Object vehiculoDTO) throws EditObjectException{
-		VehiculoDTO vehiculo = (VehiculoDTO)vehiculoDTO;
 		
-		if(vehiculo.getId() != null)
-			dao.saveOrUpdate(vehiculoDTO);
+		if(((VehiculoDTO)vehiculoDTO).getId() != null)
+			dao.update(vehiculoDTO);
 		else
 			throw new EditObjectException("El vehiculo que desea editar no es válido");
-			
 	}
 	
-	@Override
 	public void removeObject(Object vehiculoDTO) throws RemoveObjectException{
-		
+		if(((VehiculoDTO)vehiculoDTO).getId() != null)
+			dao.delete(vehiculoDTO);
+		else
+			throw new RemoveObjectException("El vehiculo que desea eliminar no es válido");
 	}
 }

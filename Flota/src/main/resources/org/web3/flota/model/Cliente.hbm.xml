@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="org.web3.flota.model">
+	<class name="ClienteDTO" table="CLIENTES">
+		<id column="id" name="id" type="java.lang.String" >
+			<generator class="org.hibernate.id.UUIDGenerator"/>
+		</id>
+		
+		<property name="nombres" 		column="nombres" 		type="java.lang.String"/>
+		<property name="apellidos"		column="apellidos"		type="java.lang.String"/>
+		<property name="nroDocumento"	column="nro_documento"	type="java.lang.String"/>
+		<property name="direccion"		column="direccion"		type="java.lang.String"/>
+		
+		<many-to-one name="tipo" 			cascade="none"/>
+		<many-to-one name="nacionalidad" 	cascade="none"/>
+		<many-to-one name="reputacion"		cascade="none"/>
+	</class>
+	
+	<query name="getAllClientes">
+		<![CDATA[
+			SELECT c FROM ClienteDTO c
+		]]>
+	</query>
+	
+</hibernate-mapping>

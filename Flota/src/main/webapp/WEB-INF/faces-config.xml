@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+    <managed-bean>
+		<managed-bean-name>loginMB</managed-bean-name>
+		<managed-bean-class>org.web3.flota.presentation.LoginMB</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>clienteMB</managed-bean-name>
+		<managed-bean-class>org.web3.flota.presentation.ClienteMB</managed-bean-class> 
+		<managed-bean-scope>application</managed-bean-scope>
+		<managed-property>
+			<property-name>paisService</property-name>
+			<value>#{paisService}</value>			
+		</managed-property>		
+	</managed-bean>
+	
+   	<!-- 
+	
+	<managed-bean>
+		<managed-bean-name>vehiculoMB</managed-bean-name>
+		<managed-bean-class>org.personas.presentation.VehiculoMB</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+		<managed-property>
+			<property-name>marcaService</property-name>
+			<value>#{marcaService}</value>			
+		</managed-property>		
+	</managed-bean>
+	
+	
+	
+	<managed-bean>
+		<managed-bean-name>paisService</managed-bean-name>
+		<managed-bean-class>org.personas.presentation.service.PaisService</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>marcaService</managed-bean-name>
+		<managed-bean-class>org.personas.presentation.service.MarcaService</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<converter>
+	    <converter-id>paisConverter</converter-id>
+	    <converter-class>org.personas.presentation.converter.PaisConverter</converter-class>
+	</converter>
+	
+	<converter>
+	    <converter-id>marcaConverter</converter-id>
+	    <converter-class>org.personas.presentation.converter.MarcaConverter</converter-class>
+	</converter>
+	
+	
+	
+	<navigation-rule>
+	   <from-view-id>/MenuBar.xhtml</from-view-id>
+	   <navigation-case>
+	       <from-outcome>persona</from-outcome>
+	       <to-view-id>/page/Persona.xhtml</to-view-id>
+	   </navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+	   <from-view-id>/MenuBar.xhtml</from-view-id>
+	   <navigation-case>
+	       <from-outcome>vehiculos</from-outcome>
+	       <to-view-id>/page/Vehiculos.xhtml</to-view-id>
+	   </navigation-case>
+	</navigation-rule>
+	
+	 -->
+	<navigation-rule>
+	   <from-view-id>/*</from-view-id>
+	   <navigation-case>
+	       <from-outcome>login</from-outcome>
+	       <to-view-id>/Pages/Login.xhtml</to-view-id>
+	   </navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	   <from-view-id>/Pages/Login.xhtml</from-view-id>
+	   <navigation-case>
+	       <from-outcome>home</from-outcome>
+	       <to-view-id>/Pages/Home.xhtml</to-view-id>
+	   </navigation-case>
+	</navigation-rule>
+</faces-config>

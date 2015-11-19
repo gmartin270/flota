@@ -1,8 +1,8 @@
 package org.web3.flota.bussiness.facade;
 
-import org.web3.flota.bussiness.AbstractObjectBO;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.bussiness.factory.FactoryObjectBO;
+import org.web3.flota.bussiness.factory.IObjectBO;
 
 public class RemoveFacade {
 	
@@ -19,7 +19,7 @@ public class RemoveFacade {
 	}
 	
 	public void remove(Object objetoDTO) throws RemoveObjectException{
-		AbstractObjectBO bo = FactoryObjectBO.createObjectBO(objetoDTO);
+		IObjectBO bo = FactoryObjectBO.createObjectBO(objetoDTO);
 		
 		bo.removeObject(objetoDTO);
 	}	

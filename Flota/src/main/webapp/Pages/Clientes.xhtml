@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<ui:include src="Head.xhtml"></ui:include>
+</h:head>
+<h:body>
+	<ui:include src="MenuBar.xhtml"></ui:include>
+	<h:form>
+		<table>
+			<tr valign="top">
+				<td>
+					<p:contextMenu for="clientes">
+					    <p:menuitem value="Editar" update="panel" icon="ui-icon-search" actionListener="#{clienteMB.editarCliente}"/>
+					    <p:menuitem value="Borrar" update="clientes" icon="ui-icon-close" actionListener="#{clienteMB.borrarCliente}"/>
+					</p:contextMenu>
+					<p:dataTable id="clientes" var="persona" value="#{clienteMB.clientes}" rowKey="#{cliente.dni}" selection="#{clienteMB.selectedCliente}" selectionMode="single">
+				        <f:facet name="header">
+				            Cliente - Realize click derecho para mostrar las opciones.
+				        </f:facet>
+				        <p:column headerText="Nombre">
+				            <h:outputText value="#{cliente.name}" />
+				        </p:column>
+				        <p:column headerText="Apellido">
+				            <h:outputText value="#{cliente.lastName}" />
+				        </p:column>
+				        <p:column headerText="DNI" >
+				            <h:outputText value="#{cliente.dni}" />
+				        </p:column>
+				    </p:dataTable> 
+				</td>
+				<td>
+					<p:panel id="panel" header="Cliente" style="margin-bottom:10px;">
+		
+						<p:messages id="msgs" />
+						
+						<h:panelGrid columns="2">
+						
+							<h:outputLabel for="inputname" value="Nombres: " />
+							<p:inputText id="inputname" value="#{clienteMB.name}">
+								<f:validateRequired />
+							</p:inputText>
+							
+							<h:outputLabel for="inputlastName" value="Apellidos: " />
+							<p:inputText id="inputlastName" value="#{clienteMB.lastName}" ></p:inputText>
+							
+							<h:outputLabel for="inputDni" value="DNI: " />
+			                <p:inputText id="inputDni" value="#{clienteMB.dni}"></p:inputText>
+			                
+			                <p:outputLabel for="nacionalidad" value="Nacionalidad:" />
+					        <p:selectOneListbox id="nacionalidad" value="#{clienteMB.nacionalidad}" converter="paisConverter" var="t" filter="true" filterMatchMode="contains">
+					            <f:selectItems value="#{clienteMB.paises}" var="pais" itemLabel="#{pais.displayNombre}" itemValue="#{pais}" />
+					 
+					           	<p:column>
+					                <h:outputText value="#{t.displayNombre}" />
+					            </p:column>
+					        </p:selectOneListbox>
+							
+							<p:commandButton value="Guardar" update="clientes,panel" action="#{clienteMB.save}"></p:commandButton>																			
+						</h:panelGrid>
+					</p:panel>
+				</td>
+			</tr>
+		</table>		
+	</h:form>
+</h:body>
+</html>

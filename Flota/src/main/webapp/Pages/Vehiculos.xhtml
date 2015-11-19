@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link type="text/css" rel="stylesheet" href="themes/bluesky/skin.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<table>
+			<tr valign="top">
+				<td>
+					<p:contextMenu for="vehiculos">
+					    <p:menuitem value="Editar" update="panel" icon="ui-icon-search" actionListener="#{vehiculoMB.editarVehiculo}"/>
+					    <p:menuitem value="Borrar" update="vehiculos" icon="ui-icon-close" actionListener="#{vehiculoMB.borrarVehiculo}"/>
+					</p:contextMenu>
+					<p:dataTable id="vehiculos" var="vehiculo" value="#{vehiculoMB.vehiculos}" rowKey="#{vehiculo.id}" selection="#{vehiculoMB.selectedVehiculo}" selectionMode="single">
+				        <f:facet name="header">
+				            Vehiculos - Realize click derecho para mostrar las opciones.
+				        </f:facet>
+				        <p:column headerText="ID" >
+				            <h:outputText value="#{vehiculo.id}" />
+				        </p:column>
+				        <p:column headerText="Marca" >
+				            <h:outputText value="#{vehiculo.marca.displayNombre}" />
+				        </p:column>
+				        <p:column headerText="Dominio">
+				            <h:outputText value="#{vehiculo.dominio}" />
+				        </p:column>
+				    </p:dataTable> 
+				</td>
+				<td>
+					<p:panel id="panel" header="Vehiculo" style="margin-bottom:10px;">
+		
+						<p:messages id="msgs" />
+						
+						<h:panelGrid columns="2">
+						    
+			                <p:outputLabel for="marca" value="Marca:" />
+					        <p:selectOneListbox id="marca" value="#{vehiculoMB.marca}" converter="marcaConverter" var="m" filter="true" filterMatchMode="contains">
+					            <f:selectItems value="#{vehiculoMB.marcas}" var="marca" itemLabel="#{marca.displayNombre}" itemValue="#{marca}" />
+					 
+					           	<p:column>
+					                <h:outputText value="#{m.displayNombre}" />
+					            </p:column>
+					        </p:selectOneListbox>
+					        
+					        <h:outputLabel for="inputDominio" value="Dominio: " />
+			                <p:inputText id="inputDominio" value="#{vehiculoMB.dominio}"></p:inputText>
+							
+							<p:commandButton value="Guardar" update="vehiculos,panel" action="#{vehiculoMB.save}"></p:commandButton>																			
+						</h:panelGrid>
+					</p:panel>
+				</td>
+			</tr>
+		</table>		
+	</h:form>
+</h:body>
+</html>

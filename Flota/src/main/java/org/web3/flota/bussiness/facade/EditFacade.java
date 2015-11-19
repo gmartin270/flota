@@ -1,8 +1,8 @@
 package org.web3.flota.bussiness.facade;
 
-import org.web3.flota.bussiness.AbstractObjectBO;
 import org.web3.flota.bussiness.exceptions.EditObjectException;
 import org.web3.flota.bussiness.factory.FactoryObjectBO;
+import org.web3.flota.bussiness.factory.IObjectBO;
 
 public class EditFacade {
 	
@@ -19,7 +19,7 @@ public class EditFacade {
 	}
 	
 	public void edit(String id, Object objetoDTO) throws EditObjectException{
-		AbstractObjectBO bo = FactoryObjectBO.createObjectBO(objetoDTO);
+		IObjectBO bo = FactoryObjectBO.createObjectBO(objetoDTO);
 		
 		bo.editObject(id, objetoDTO);
 	}	
