@@ -1,8 +1,10 @@
 package org.web3.flota.model;
 
-public class LoginDTO {
+public class UsuarioDTO {
+	private String id;
 	private String usuario;
 	private String password;
+	private String nomCompleto;
 	
 	public String getUsuario() {
 		return usuario;
@@ -15,5 +17,17 @@ public class LoginDTO {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getNomCompleto() {
+		return nomCompleto;
+	}
+	public void setNomCompleto(String nomCompleto) {
+		this.nomCompleto = nomCompleto;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

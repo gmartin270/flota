@@ -14,52 +14,81 @@
 			<tr valign="top">
 				<td>
 					<p:contextMenu for="clientes">
-					    <p:menuitem value="Editar" update="panel" icon="ui-icon-search" actionListener="#{clienteMB.editarCliente}"/>
-					    <p:menuitem value="Borrar" update="clientes" icon="ui-icon-close" actionListener="#{clienteMB.borrarCliente}"/>
+					    <p:menuitem value="Editar" update="panel" icon="ui-icon-pencil" actionListener="#{clienteMB.editarCliente}"/>
+					    <p:menuitem value="Borrar" update="clientes" icon="ui-icon-trash" actionListener="#{clienteMB.borrarCliente}"/>
 					</p:contextMenu>
-					<p:dataTable id="clientes" var="persona" value="#{clienteMB.clientes}" rowKey="#{cliente.dni}" selection="#{clienteMB.selectedCliente}" selectionMode="single">
+					<p:dataTable id="clientes" var="cliente" value="#{clienteMB.clientes}" rowKey="#{cliente.id}" selection="#{clienteMB.selectedCliente}" selectionMode="single">
 				        <f:facet name="header">
-				            Cliente - Realize click derecho para mostrar las opciones.
+				            Clientes - Realize click derecho para mostrar las opciones.
 				        </f:facet>
 				        <p:column headerText="Nombre">
-				            <h:outputText value="#{cliente.name}" />
+				            <h:outputText value="#{cliente.nombres}" />
 				        </p:column>
 				        <p:column headerText="Apellido">
-				            <h:outputText value="#{cliente.lastName}" />
+				            <h:outputText value="#{cliente.apellidos}" />
 				        </p:column>
 				        <p:column headerText="DNI" >
-				            <h:outputText value="#{cliente.dni}" />
+				            <h:outputText value="#{cliente.nroDocumento}" />
 				        </p:column>
 				    </p:dataTable> 
 				</td>
 				<td>
 					<p:panel id="panel" header="Cliente" style="margin-bottom:10px;">
 		
-						<p:messages id="msgs" />
+						<p:messages id="msgs" display="tooltip" />
 						
 						<h:panelGrid columns="2">
-						
+							<h:outputLabel for="clienteId" value="" />
+							<h:inputHidden id="clienteId" value="#{clienteMB.id}" />
+							
 							<h:outputLabel for="inputname" value="Nombres: " />
-							<p:inputText id="inputname" value="#{clienteMB.name}">
+							<p:inputText id="inputname" value="#{clienteMB.name}" label="Nombres">
 								<f:validateRequired />
 							</p:inputText>
 							
 							<h:outputLabel for="inputlastName" value="Apellidos: " />
-							<p:inputText id="inputlastName" value="#{clienteMB.lastName}" ></p:inputText>
+							<p:inputText id="inputlastName" value="#{clienteMB.lastName}" label="Apellidos"/>
 							
-							<h:outputLabel for="inputDni" value="DNI: " />
-			                <p:inputText id="inputDni" value="#{clienteMB.dni}"></p:inputText>
+							<p:outputLabel for="tipoDocumento" value="Tipo Documento:" />
+			                <p:selectOneMenu id="tipoDocumento" value="#{clienteMB.tipoDocumento}" converter="tipoDocumentoConverter" panelStyle="width:180px"
+					                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith" >
+					            <f:selectItems value="#{clienteMB.tiposDocumento}" var="TipoDocumentoDTO" itemLabel="#{tipoDocumento.descripcion}" itemValue="#{tipoDocumento.id}" />
+					 
+					            <p:column>
+					                <h:outputText value="#{t.descripcion}" />
+					            </p:column>
+					        </p:selectOneMenu>
+			                
+							<h:outputLabel for="inputDni" value="Número Documento: " />
+			                <p:inputText id="inputDni" value="#{clienteMB.dni}" label="Número Documento"/>
 			                
 			                <p:outputLabel for="nacionalidad" value="Nacionalidad:" />
-					        <p:selectOneListbox id="nacionalidad" value="#{clienteMB.nacionalidad}" converter="paisConverter" var="t" filter="true" filterMatchMode="contains">
-					            <f:selectItems value="#{clienteMB.paises}" var="pais" itemLabel="#{pais.displayNombre}" itemValue="#{pais}" />
+			                <p:selectOneMenu id="nacionalidad" value="#{clienteMB.nacionalidad}" converter="paisConverter" panelStyle="width:180px"
+					                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+					            <f:selectItems value="#{clienteMB.nacionalidades}" var="PaisDTO" itemLabel="#{pais.nombre}" itemValue="#{pais.id}" />
 					 
-					           	<p:column>
-					                <h:outputText value="#{t.displayNombre}" />
+					            <p:column>
+					                <h:outputText value="#{t.nombre}" />
 					            </p:column>
-					        </p:selectOneListbox>
-							
-							<p:commandButton value="Guardar" update="clientes,panel" action="#{clienteMB.save}"></p:commandButton>																			
+					        </p:selectOneMenu>
+			                
+			                <h:outputLabel for="direccion" value="Dirección: " />
+							<p:inputText id="direccion" value="#{clienteMB.direccion}">
+								<f:validateRequired />
+							</p:inputText>
+			                
+			                <p:outputLabel for="reputacion" value="Reputacion:" />
+			                <p:selectOneMenu id="reputacion" value="#{clienteMB.reputacion}" converter="reputacionConverter" panelStyle="width:180px"
+					                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith" >
+					            <f:selectItems value="#{clienteMB.reputaciones}" var="ReputacionDTO" itemLabel="#{reputacion.descripcion}" itemValue="#{ReputacionDTO}" />
+					 
+					            <p:column>
+					                <h:outputText value="#{t.descripcion}" />
+					            </p:column>
+					        </p:selectOneMenu>
+					        
+					        <p:commandButton value="Guardar" update="clientes,panel" action="#{clienteMB.save}" />	
+					        																	
 						</h:panelGrid>
 					</p:panel>
 				</td>

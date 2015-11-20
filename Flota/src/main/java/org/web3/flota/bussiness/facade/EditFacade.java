@@ -18,9 +18,9 @@ public class EditFacade {
 		return instance;
 	}
 	
-	public void edit(String id, Object objetoDTO) throws EditObjectException{
+	public void edit(Object objetoDTO) throws EditObjectException{
 		IObjectBO bo = FactoryObjectBO.createObjectBO(objetoDTO);
 		
-		bo.editObject(id, objetoDTO);
+		bo.editObject(objetoDTO);
 	}	
 }

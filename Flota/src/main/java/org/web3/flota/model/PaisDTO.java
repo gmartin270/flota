@@ -5,6 +5,8 @@ public class PaisDTO {
 	private String nombre;
 	private String abreviatura;
 	
+	public PaisDTO(){};
+	
 	public String getId() {
 		return id;
 	}
@@ -23,4 +25,9 @@ public class PaisDTO {
 	public void setAbreviatura(String abreviatura) {
 		this.abreviatura = abreviatura;
 	}
+
+	@Override
+    public String toString() {
+        return nombre;
+    }
 }

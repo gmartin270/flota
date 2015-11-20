@@ -13,7 +13,7 @@ public interface IObjectBO {
 	
 	public void createObject(Object vehiculoDTO) throws CreateObjectException;
 	
-	public void editObject(String id, Object vehiculoDTO) throws EditObjectException;
+	public void editObject(Object vehiculoDTO) throws EditObjectException;
 	
 	public void removeObject(Object vehiculoDTO) throws RemoveObjectException;
 }

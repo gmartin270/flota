@@ -54,7 +54,7 @@ public class Main {
 		
 		List<Object> vehiculos = null;
 		try {
-			vehiculos = facadeSearch.getAllObjects(VehiculoDTO.class);
+			vehiculos = facadeSearch.getAll(VehiculoDTO.class);
 		} catch (SearchObjectException e) {
 			e.printStackTrace();
 		}

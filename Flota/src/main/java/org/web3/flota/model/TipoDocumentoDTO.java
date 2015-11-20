@@ -1,6 +1,13 @@
 package org.web3.flota.model;
 
-public class TipoDocumentoDTO {
+import java.io.Serializable;
+
+public class TipoDocumentoDTO implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6292500764734914391L;
 	private String id;
 	private String descripcion;
 	
@@ -15,5 +22,10 @@ public class TipoDocumentoDTO {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	@Override
+	public String toString(){
+		return descripcion;
 	}
 }

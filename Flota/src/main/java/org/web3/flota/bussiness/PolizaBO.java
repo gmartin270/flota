@@ -35,7 +35,7 @@ public class PolizaBO implements IObjectBO{
 		dao.create(polizaDTO);
 	}
 	
-	public void editObject(String id, Object polizaDTO) throws EditObjectException{
+	public void editObject( Object polizaDTO) throws EditObjectException{
 		
 		if(((VehiculoDTO)polizaDTO).getId() != null)
 			dao.update(polizaDTO);

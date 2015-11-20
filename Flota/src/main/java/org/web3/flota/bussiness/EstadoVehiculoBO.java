@@ -35,7 +35,7 @@ public class EstadoVehiculoBO implements IObjectBO{
 		dao.create(estadoVehiculoDTO);
 	}
 	
-	public void editObject(String id, Object estadoVehiculoDTO) throws EditObjectException{
+	public void editObject( Object estadoVehiculoDTO) throws EditObjectException{
 		
 		if(((VehiculoDTO)estadoVehiculoDTO).getId() != null)
 			dao.update(estadoVehiculoDTO);

@@ -5,9 +5,10 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<link type="text/css" rel="stylesheet" href="themes/bluesky/skin.css" />
+	<ui:include src="Head.xhtml"></ui:include>
 </h:head>
 <h:body>
+	<ui:include src="MenuBar.xhtml"></ui:include>
 	<h:form>
 		<table>
 			<tr valign="top">
@@ -38,19 +39,19 @@
 						
 						<h:panelGrid columns="2">
 						    
-			                <p:outputLabel for="marca" value="Marca:" />
+			                <!-- <p:outputLabel for="marca" value="Marca:" />
 					        <p:selectOneListbox id="marca" value="#{vehiculoMB.marca}" converter="marcaConverter" var="m" filter="true" filterMatchMode="contains">
 					            <f:selectItems value="#{vehiculoMB.marcas}" var="marca" itemLabel="#{marca.displayNombre}" itemValue="#{marca}" />
 					 
 					           	<p:column>
 					                <h:outputText value="#{m.displayNombre}" />
 					            </p:column>
-					        </p:selectOneListbox>
+					        </p:selectOneListbox> -->
 					        
 					        <h:outputLabel for="inputDominio" value="Dominio: " />
-			                <p:inputText id="inputDominio" value="#{vehiculoMB.dominio}"></p:inputText>
+			                <p:inputText id="inputDominio" value="#{vehiculoMB.dominio}" />
 							
-							<p:commandButton value="Guardar" update="vehiculos,panel" action="#{vehiculoMB.save}"></p:commandButton>																			
+							<p:commandButton value="Guardar" update="vehiculos,panel" action="#{vehiculoMB.save}" />																			
 						</h:panelGrid>
 					</p:panel>
 				</td>

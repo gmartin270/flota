@@ -18,8 +18,49 @@
 		<managed-property>
 			<property-name>paisService</property-name>
 			<value>#{paisService}</value>			
-		</managed-property>		
+		</managed-property>
+		<managed-property>
+			<property-name>reputacionService</property-name>
+			<value>#{reputacionService}</value>			
+		</managed-property>
+		<managed-property>
+			<property-name>tipoDocumentoService</property-name>
+			<value>#{tipoDocumentoService}</value>			
+		</managed-property>
 	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>paisService</managed-bean-name>
+		<managed-bean-class>org.web3.flota.presentation.service.PaisService</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>reputacionService</managed-bean-name>
+		<managed-bean-class>org.web3.flota.presentation.service.ReputacionService</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>tipoDocumentoService</managed-bean-name>
+		<managed-bean-class>org.web3.flota.presentation.service.TipoDocumentoService</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<converter>
+	    <converter-id>paisConverter</converter-id>
+	    <converter-class>org.web3.flota.presentation.converter.PaisConverter</converter-class>
+	</converter>
+	
+	<converter>
+	    <converter-id>reputacionConverter</converter-id>
+	    <converter-class>org.web3.flota.presentation.converter.ReputacionConverter</converter-class>
+	</converter>
+	
+	<converter>
+	    <converter-id>tipoDocumentoConverter</converter-id>
+	    <converter-class>org.web3.flota.presentation.converter.TipoDocumentoConverter</converter-class>
+	</converter>
 	
    	<!-- 
 	
@@ -32,14 +73,7 @@
 			<value>#{marcaService}</value>			
 		</managed-property>		
 	</managed-bean>
-	
-	
-	
-	<managed-bean>
-		<managed-bean-name>paisService</managed-bean-name>
-		<managed-bean-class>org.personas.presentation.service.PaisService</managed-bean-class>
-		<managed-bean-scope>application</managed-bean-scope>
-	</managed-bean>
+
 	
 	<managed-bean>
 		<managed-bean-name>marcaService</managed-bean-name>
@@ -47,10 +81,7 @@
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	
-	<converter>
-	    <converter-id>paisConverter</converter-id>
-	    <converter-class>org.personas.presentation.converter.PaisConverter</converter-class>
-	</converter>
+
 	
 	<converter>
 	    <converter-id>marcaConverter</converter-id>

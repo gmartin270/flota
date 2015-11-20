@@ -14,7 +14,7 @@
 	
 	<query name="getAllPaises">
 		<![CDATA[
-			SELECT m FROM PaisDTO m
+			SELECT p FROM PaisDTO p ORDER BY p.nombre
 		]]>
 	</query>
 </hibernate-mapping>

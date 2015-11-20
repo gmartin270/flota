@@ -12,6 +12,7 @@ import org.web3.flota.bussiness.ReputacionBO;
 import org.web3.flota.bussiness.SeguroBO;
 import org.web3.flota.bussiness.TipoDocumentoBO;
 import org.web3.flota.bussiness.TipoVehiculoBO;
+import org.web3.flota.bussiness.UsuarioBO;
 import org.web3.flota.bussiness.VehiculoBO;
 import org.web3.flota.model.AsignacionDTO;
 import org.web3.flota.model.CedulaDTO;
@@ -25,6 +26,7 @@ import org.web3.flota.model.ReputacionDTO;
 import org.web3.flota.model.SeguroDTO;
 import org.web3.flota.model.TipoDocumentoDTO;
 import org.web3.flota.model.TipoVehiculoDTO;
+import org.web3.flota.model.UsuarioDTO;
 import org.web3.flota.model.VehiculoDTO;
 
 public class FactoryObjectBO {
@@ -56,6 +58,8 @@ public class FactoryObjectBO {
 			objectBO = TipoDocumentoBO.getInstance();
 		else if(objetoDTO instanceof TipoVehiculoDTO)
 			objectBO = TipoVehiculoBO.getInstance();
+		else if(objetoDTO instanceof UsuarioDTO)
+			objectBO = UsuarioBO.getInstance();
 		else if(objetoDTO instanceof VehiculoDTO)
 			objectBO = VehiculoBO.getInstance();
 		
@@ -89,6 +93,8 @@ public class FactoryObjectBO {
 			objectBO = TipoDocumentoBO.getInstance();
 		else if(clazz.equals(TipoVehiculoDTO.class))
 			objectBO = TipoVehiculoBO.getInstance();
+		else if(clazz.equals(UsuarioDTO.class))
+			objectBO = UsuarioBO.getInstance();
 		else if(clazz.equals(VehiculoDTO.class))
 			objectBO = VehiculoBO.getInstance();
 		

@@ -7,8 +7,8 @@ import org.web3.flota.bussiness.exceptions.EditObjectException;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.bussiness.exceptions.SearchObjectException;
 import org.web3.flota.bussiness.factory.IObjectBO;
+import org.web3.flota.model.PaisDTO;
 import org.web3.flota.model.VehiculoDTO;
-import org.web3.flota.persist.AsignacionDAO;
 import org.web3.flota.persist.FactoryObjectDAO;
 import org.web3.flota.persist.IGenericDAO;
 
@@ -17,7 +17,7 @@ public class PaisBO implements IObjectBO{
 	private IGenericDAO dao;
 	
 	private PaisBO(){
-		dao = FactoryObjectDAO.createObjectDAO(AsignacionDAO.class);
+		dao = FactoryObjectDAO.createObjectDAO(PaisDTO.class);
 	};
 	
 	public static PaisBO getInstance(){
@@ -35,7 +35,7 @@ public class PaisBO implements IObjectBO{
 		dao.create(paisDTO);
 	}
 	
-	public void editObject(String id, Object paisDTO) throws EditObjectException{
+	public void editObject( Object paisDTO) throws EditObjectException{
 		
 		if(((VehiculoDTO)paisDTO).getId() != null)
 			dao.update(paisDTO);

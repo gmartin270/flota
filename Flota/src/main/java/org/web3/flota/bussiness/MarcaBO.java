@@ -35,7 +35,7 @@ public class MarcaBO implements IObjectBO{
 		dao.create(marcaDTO);
 	}
 	
-	public void editObject(String id, Object marcaDTO) throws EditObjectException{
+	public void editObject( Object marcaDTO) throws EditObjectException{
 		
 		if(((VehiculoDTO)marcaDTO).getId() != null)
 			dao.update(marcaDTO);

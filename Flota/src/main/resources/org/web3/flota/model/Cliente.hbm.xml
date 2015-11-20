@@ -14,9 +14,9 @@
 		<property name="nroDocumento"	column="nro_documento"	type="java.lang.String"/>
 		<property name="direccion"		column="direccion"		type="java.lang.String"/>
 		
-		<many-to-one name="tipo" 			cascade="none"/>
-		<many-to-one name="nacionalidad" 	cascade="none"/>
-		<many-to-one name="reputacion"		cascade="none"/>
+		<many-to-one name="tipo" 			cascade="none" lazy="false"/>
+		<many-to-one name="nacionalidad" 	cascade="none" lazy="false"/>
+		<many-to-one name="reputacion"		cascade="none" lazy="false"/>
 	</class>
 	
 	<query name="getAllClientes">

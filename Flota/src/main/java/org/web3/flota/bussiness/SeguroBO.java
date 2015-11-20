@@ -35,7 +35,7 @@ public class SeguroBO implements IObjectBO{
 		dao.create(seguroDTO);
 	}
 	
-	public void editObject(String id, Object seguroDTO) throws EditObjectException{
+	public void editObject( Object seguroDTO) throws EditObjectException{
 		
 		if(((VehiculoDTO)seguroDTO).getId() != null)
 			dao.update(seguroDTO);

@@ -3,10 +3,17 @@ package org.web3.flota.presentation;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import org.web3.flota.model.LoginDTO;
+import org.web3.flota.bussiness.exceptions.SearchObjectException;
+import org.web3.flota.bussiness.facade.SearchFacade;
+import org.web3.flota.bussiness.facade.TipoFacade;
+import org.web3.flota.bussiness.factory.FactoryFacade;
 
+@ManagedBean(name="loginMB")
+@ApplicationScoped
 public class LoginMB implements Serializable{
 	/**
 	 * 
@@ -29,26 +36,27 @@ public class LoginMB implements Serializable{
 	}
 	
 	public String login() {
+		boolean usuarioValido = false;
+		
 		System.out.println("log in ...");
 		System.out.println(usuario);
 		System.out.println(password);
 		
-		LoginDTO lg = new LoginDTO();
-		lg.setUsuario(usuario);
-		lg.setPassword(password);
+		SearchFacade searchFacade = (SearchFacade)FactoryFacade.getFacade(TipoFacade.SEARCH);
 		
-		//return "menu";
-		
-		if(lg.getUsuario().equals("guillermo") && lg.getPassword().equals("qwerty")){		
-			System.out.println("Login: "+ lg.getUsuario());
-			System.out.println("Password: " + lg.getPassword());
+		try{
+			usuarioValido = searchFacade.validarUsuario(usuario, password);
+		}catch (SearchObjectException se){
 			
+		}
+		
+		if(usuarioValido){		
 			System.out.println("logged ...");
-			
 			return "home";
 		}else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuario y/o contraseña incorrectos"));
+			FacesContext context = FacesContext.getCurrentInstance();	         
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fallo",  "Usuario y/o contraseña incorrectos" ));
 			return "login";
-		}		
-	}	
+		}
+	}		
 }

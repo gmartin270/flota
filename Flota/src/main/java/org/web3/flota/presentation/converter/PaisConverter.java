@@ -1,4 +1,4 @@
-package org.web3.flota.persist.converter;
+package org.web3.flota.presentation.converter;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -8,17 +8,26 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 import org.web3.flota.model.PaisDTO;
-import org.web3.flota.persist.converter.service.PaisService;
+import org.web3.flota.presentation.service.PaisService;
 
-
-@FacesConverter("paisConverter")
+@FacesConverter("PaisConverter")
 public class PaisConverter implements Converter {
 
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
+		Object item = null;
+		
         if(value != null && value.trim().length() > 0) {
             try {
                 PaisService service = (PaisService) fc.getExternalContext().getApplicationMap().get("paisService");
-                return service.getPaises().get(Integer.parseInt(value));
+                
+                for(int i=0; i<service.getPaises().size(); i++){
+                	if(((PaisDTO)service.getPaises().get(i)).getId().equals(value)){
+                		item = service.getPaises().get(i);
+                		break;
+                	}
+                }
+                
+                return item;
             } catch(NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid country."));
             }

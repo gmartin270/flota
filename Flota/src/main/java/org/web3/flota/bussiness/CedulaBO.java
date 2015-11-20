@@ -35,7 +35,7 @@ public class CedulaBO implements IObjectBO{
 		dao.create(cedulaDTO);
 	}
 	
-	public void editObject(String id, Object cedulaDTO) throws EditObjectException{
+	public void editObject( Object cedulaDTO) throws EditObjectException{
 		
 		if(((VehiculoDTO)cedulaDTO).getId() != null)
 			dao.update(cedulaDTO);

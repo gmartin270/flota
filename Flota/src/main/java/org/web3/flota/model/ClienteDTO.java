@@ -58,6 +58,4 @@ public class ClienteDTO {
 	public void setReputacion(ReputacionDTO reputacion) {
 		this.reputacion = reputacion;
 	}
-	
-	
 }

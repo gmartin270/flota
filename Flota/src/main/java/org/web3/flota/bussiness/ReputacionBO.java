@@ -7,8 +7,8 @@ import org.web3.flota.bussiness.exceptions.EditObjectException;
 import org.web3.flota.bussiness.exceptions.RemoveObjectException;
 import org.web3.flota.bussiness.exceptions.SearchObjectException;
 import org.web3.flota.bussiness.factory.IObjectBO;
+import org.web3.flota.model.ReputacionDTO;
 import org.web3.flota.model.VehiculoDTO;
-import org.web3.flota.persist.AsignacionDAO;
 import org.web3.flota.persist.FactoryObjectDAO;
 import org.web3.flota.persist.IGenericDAO;
 
@@ -17,7 +17,7 @@ public class ReputacionBO implements IObjectBO{
 	private IGenericDAO dao;
 	
 	private ReputacionBO(){
-		dao = FactoryObjectDAO.createObjectDAO(AsignacionDAO.class);
+		dao = FactoryObjectDAO.createObjectDAO(ReputacionDTO.class);
 	};
 	
 	public static ReputacionBO getInstance(){
@@ -35,7 +35,7 @@ public class ReputacionBO implements IObjectBO{
 		dao.create(reputacionDTO);
 	}
 	
-	public void editObject(String id, Object reputacionDTO) throws EditObjectException{
+	public void editObject( Object reputacionDTO) throws EditObjectException{
 		
 		if(((VehiculoDTO)reputacionDTO).getId() != null)
 			dao.update(reputacionDTO);

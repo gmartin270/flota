@@ -15,7 +15,7 @@
 	
 	<query name="getAllCedulas">
 		<![CDATA[
-			SELECT c FROM CedulaDTO c
+			SELECT c FROM CedulaDTO c ORDER BY c.numero
 		]]>
 	</query>
 </hibernate-mapping>

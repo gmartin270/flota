@@ -13,7 +13,7 @@
 	
 	<query name="getAllTiposDocumento">
 		<![CDATA[
-			SELECT t FROM TipoDocumentoDTO t
+			SELECT t FROM TipoDocumentoDTO t ORDER BY t.descripcion
 		]]>
 	</query>
 </hibernate-mapping>

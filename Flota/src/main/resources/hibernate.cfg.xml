@@ -26,6 +26,7 @@
 		<mapping resource="org/web3/flota/model/Seguro.hbm.xml" />
 		<mapping resource="org/web3/flota/model/TipoDocumento.hbm.xml" />
 		<mapping resource="org/web3/flota/model/TipoVehiculo.hbm.xml" />
+		<mapping resource="org/web3/flota/model/Usuario.hbm.xml" />
 		<mapping resource="org/web3/flota/model/Vehiculo.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

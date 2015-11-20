@@ -10,13 +10,11 @@ import org.web3.flota.util.HibernateUtil;
 
 public abstract class GenericDAO {
 
-	private Session session;
-    private Transaction tx;
+	protected Session session;
+    protected Transaction tx;
 
-    public GenericDAO() {
-    	
-    }
-
+    public GenericDAO() {}
+    
     protected void saveOrUpdate(Object obj) {
         try {
             startOperation();
