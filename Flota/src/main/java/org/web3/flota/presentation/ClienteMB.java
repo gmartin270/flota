@@ -170,10 +170,7 @@ public class ClienteMB implements Serializable{
     }
 	
 	public void save() {
-		
-		
 		System.out.println("Saving ...");
-		
 		
 		ClienteDTO cliente = new ClienteDTO();
 		cliente.setNombres(name);
@@ -241,7 +238,6 @@ public class ClienteMB implements Serializable{
 		
 		selectedCliente = null;
 		refreshGrid();
-		
 	}
 	
 	private void refreshGrid(){

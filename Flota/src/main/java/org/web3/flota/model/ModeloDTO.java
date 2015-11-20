@@ -23,4 +23,9 @@ public class ModeloDTO {
 	public void setMarca(MarcaDTO marca) {
 		this.marca = marca;
 	}
+	
+	@Override
+	public String toString(){
+		return nombre;
+	}
 }

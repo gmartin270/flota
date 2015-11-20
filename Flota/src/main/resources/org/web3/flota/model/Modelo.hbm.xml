@@ -9,10 +9,6 @@
 			<generator class="org.hibernate.id.UUIDGenerator"/>
 		</id>
 		<property name="nombre" column="nombre" type="java.lang.String"/>
-		
-		<many-to-one name="marca" cascade="none">
-			<column name="idMarca"/>
-		</many-to-one>
 	</class>
 	
 	<query name="getAllModelos">

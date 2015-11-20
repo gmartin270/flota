@@ -21,11 +21,8 @@
 				        <f:facet name="header">
 				            Vehiculos - Realize click derecho para mostrar las opciones.
 				        </f:facet>
-				        <p:column headerText="ID" >
-				            <h:outputText value="#{vehiculo.id}" />
-				        </p:column>
-				        <p:column headerText="Marca" >
-				            <h:outputText value="#{vehiculo.marca.displayNombre}" />
+				        <p:column headerText="Modelo" >
+				            <h:outputText value="#{vehiculo.modelo.nombre}" />
 				        </p:column>
 				        <p:column headerText="Dominio">
 				            <h:outputText value="#{vehiculo.dominio}" />
@@ -38,15 +35,18 @@
 						<p:messages id="msgs" />
 						
 						<h:panelGrid columns="2">
-						    
-			                <!-- <p:outputLabel for="marca" value="Marca:" />
-					        <p:selectOneListbox id="marca" value="#{vehiculoMB.marca}" converter="marcaConverter" var="m" filter="true" filterMatchMode="contains">
-					            <f:selectItems value="#{vehiculoMB.marcas}" var="marca" itemLabel="#{marca.displayNombre}" itemValue="#{marca}" />
+						    <h:outputLabel for="modeloId" value="" />
+							<h:inputHidden id="modeloId" value="#{vehiculoMB.id}" />
+							
+			                <p:outputLabel for="modelo" value="Modelo:" />
+					        <p:selectOneMenu id="modelo" value="#{vehiculoMB.modelo}" converter="modeloConverter" panelStyle="width:180px"
+					                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith" >
+					            <f:selectItems value="#{vehiculoMB.modelos}" var="modelo" itemLabel="#{modelo.nombre}" itemValue="#{modelo}" />
 					 
 					           	<p:column>
-					                <h:outputText value="#{m.displayNombre}" />
+					                <h:outputText value="#{t.nombre}" />
 					            </p:column>
-					        </p:selectOneListbox> -->
+					        </p:selectOneMenu>
 					        
 					        <h:outputLabel for="inputDominio" value="Dominio: " />
 			                <p:inputText id="inputDominio" value="#{vehiculoMB.dominio}" />
