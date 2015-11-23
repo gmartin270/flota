@@ -20,8 +20,7 @@
 						<h:outputLabel for="inputPassword" value="Password: " />
 						<p:password id="inputPassword" value="#{loginMB.password}" feedback="true" required="true" label="Password"/>
 						
-						<p:commandButton value="Log In" action="#{loginMB.login}" validateClient="true" update="msg"></p:commandButton>
-					
+						<p:commandButton value="Log In" action="#{loginMB.login}" validateClient="true" update="msg" />					
 					</h:panelGrid>
 				</p:panel>
 			</h:form>

@@ -30,6 +30,9 @@
 				        <p:column headerText="DNI" >
 				            <h:outputText value="#{cliente.nroDocumento}" />
 				        </p:column>
+				        <p:column headerText="TIPO" >
+				            <h:outputText value="#{cliente.tipo.descripcion}" />
+				        </p:column>
 				    </p:dataTable> 
 				</td>
 				<td>
@@ -50,10 +53,11 @@
 							<p:inputText id="inputlastName" value="#{clienteMB.lastName}" label="Apellidos"/>
 							
 							<p:outputLabel for="tipoDocumento" value="Tipo Documento:" />
+							
 			                <p:selectOneMenu id="tipoDocumento" value="#{clienteMB.tipoDocumento}" converter="tipoDocumentoConverter" panelStyle="width:180px"
 					                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith" >
-					            <f:selectItems value="#{clienteMB.tiposDocumento}" var="TipoDocumentoDTO" itemLabel="#{tipoDocumento.descripcion}" itemValue="#{tipoDocumento.id}" />
-					 
+					            <f:selectItems value="#{clienteMB.tiposDocumento}" var="tipo" itemLabel="#{tipoDocumento.descripcion}" itemValue="#{tipoDocumento}" />
+
 					            <p:column>
 					                <h:outputText value="#{t.descripcion}" />
 					            </p:column>

@@ -8,6 +8,7 @@ public class AsignacionDTO {
 	private VehiculoDTO vehiculo;
 	private Date fechaEntrega;
 	private Date fechaDevolucion;
+	private Date fechaDevolucionEfectiva;
 	
 	public String getId() {
 		return id;
@@ -38,5 +39,11 @@ public class AsignacionDTO {
 	}
 	public void setFechaDevolucion(Date fechaDevolucion) {
 		this.fechaDevolucion = fechaDevolucion;
+	}
+	public Date getFechaDevolucionEfectiva() {
+		return fechaDevolucionEfectiva;
+	}
+	public void setFechaDevolucionEfectiva(Date fechaDevolucionEfectiva) {
+		this.fechaDevolucionEfectiva = fechaDevolucionEfectiva;
 	}
 }

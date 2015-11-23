@@ -11,7 +11,7 @@
 		
 		<property name="fechaEntrega" 		column="fecha_entrega" 		type="date"/>
 		<property name="fechaDevolucion"	column="fecha_devolucion"	type="date"/>
-		
+		<property name="fechaDevolucionEfectiva"	column="fecha_devolucion_efectiva"	type="date"/>
 		<many-to-one name="cliente"		class="org.web3.flota.model.ClienteDTO"		cascade="none"	lazy="false">
 			<column name="idCliente"/>
 		</many-to-one>

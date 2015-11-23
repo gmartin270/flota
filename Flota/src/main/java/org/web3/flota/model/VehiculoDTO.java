@@ -7,11 +7,12 @@ public class VehiculoDTO {
 	private ModeloDTO modelo;
 	private PolizaDTO poliza;
 	private TipoVehiculoDTO tipo;
-	private EstadoVehiculoDTO estado;
 	private String dominio;
 	private CedulaDTO cedulaVerde;
 	private List<CedulaDTO> cedulasAzul;
 	private String categoria;
+	private boolean disponible;
+	private String estado;
 	
 	public VehiculoDTO(){};
 	
@@ -39,12 +40,6 @@ public class VehiculoDTO {
 	public void setTipo(TipoVehiculoDTO tipo) {
 		this.tipo = tipo;
 	}
-	public EstadoVehiculoDTO getEstado() {
-		return estado;
-	}
-	public void setEstado(EstadoVehiculoDTO estado) {
-		this.estado = estado;
-	}
 	public String getDominio() {
 		return dominio;
 	}
@@ -68,5 +63,26 @@ public class VehiculoDTO {
 	}
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+	public boolean getDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	@Override
+	public String toString(){
+		return modelo.getNombre() + " - " + dominio;
 	}
 }

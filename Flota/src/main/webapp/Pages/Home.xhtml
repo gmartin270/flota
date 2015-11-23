@@ -1,13 +1,166 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<ui:include src="Head.xhtml"/>
-	</h:head>
-	<h:body>
-		<ui:include src="MenuBar.xhtml"/>
-	</h:body>
+
+<h:head>
+	<ui:include src="Head.xhtml" />
+</h:head>
+<h:body>
+	<ui:include src="MenuBar.xhtml" />
+
+	<h:form id="home">
+		<table>
+			<tr valign="top">
+				<td>
+					<p:panel id="panelFiltros" header="Filtros"
+						style="margin-bottom:10px;">
+
+						<p:messages id="msgs" />
+
+						<h:panelGrid columns="2">
+							<p:outputLabel for="modelo" value="Modelo:" />
+							<p:selectOneMenu id="modelo" value="#{homeMB.modelo}"
+								converter="modeloTodosConverter" panelStyle="width:180px"
+								effect="fade" var="t" style="width:160px" filter="true"
+								filterMatchMode="startsWith">
+								<f:selectItems value="#{homeMB.modelos}" var="modelo"
+									itemLabel="#{modelo.nombre}" itemValue="#{modelo}" />
+
+								<p:column>
+									<h:outputText value="#{t.nombre}" />
+								</p:column>
+							</p:selectOneMenu>
+
+							<h:outputLabel for="inputDominio" value="Dominio: " />
+							<p:inputText id="inputDominio" value="#{homeMB.dominio}" />
+
+							<p:commandButton id="Filtrar" process="panelFiltros"
+								icon="ui-icon-search" value="Filtrar" update="vehiculosGrid"
+								action="#{homeMB.filtrar()}" />
+						</h:panelGrid>
+					</p:panel>
+				</td>
+				<td align="center">
+					<p:growl id="msg" showDetail="true" sticky="true" /> <p:dataTable
+						id="vehiculosGrid" var="vehiculo" value="#{homeMB.vehiculos}"
+						rowKey="#{vehiculo.id}" selection="#{homeMB.selectedVehiculo}"
+						selectionMode="single" rows="5" paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+						<f:facet name="header">Vehiculos.</f:facet>
+						<p:ajax event="rowSelect" listener="#{homeMB.onRowSelect}"
+							update=":home:asignacionDetail,botonAsignacion" />
+						<p:column headerText="Modelo">
+							<h:outputText value="#{vehiculo.modelo}" />
+						</p:column>
+						<p:column headerText="Dominio">
+							<h:outputText value="#{vehiculo.dominio}" />
+						</p:column>
+						<p:column headerText="Estado">
+							<h:outputText value="#{vehiculo.estado}" />
+						</p:column>
+						<f:facet name="footer">
+							<p:commandButton id="botonAsignacion" process="vehiculosGrid"
+								icon="ui-icon-pencil" value="Asignación"
+								update=":home:asignacionDetail"
+								oncomplete="PF('asignacionDialog').show()"
+								disabled="#{homeMB.deshabilitarAsignacion}" />
+						</f:facet>
+					</p:dataTable>
+					<p:panelGrid id="grillaStatus" style="margin-top:20px" >
+					    <f:facet name="header">
+					        <p:row>
+					            <p:column colspan="3">Status</p:column>
+					        </p:row>
+					        <p:row>
+					            <p:column>Total Vehiculos</p:column>
+					            <p:column>Vehiculos disponibles</p:column>
+					            <p:column>Vehiculos en uso</p:column>
+					        </p:row>
+					    </f:facet>
+					 
+					    <p:row>
+					        <p:column style="font-weight: bold;"><h:outputText value="#{homeMB.vehiculosTotal}" /></p:column>
+					        <p:column style="font-weight: bold;"><h:outputText value="#{homeMB.vehiculosDisponibles}" /></p:column>
+					 		<p:column style="font-weight: bold;"><h:outputText value="#{homeMB.vehiculosAsignados}" /></p:column>
+					    </p:row>
+					</p:panelGrid>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<br />
+		<p:dataTable id="asignacionesGrid" var="asignacion"
+			value="#{homeMB.asignaciones}" rowKey="#{asignacion.id}"
+			selection="#{homeMB.selectedAsignacion}" selectionMode="single"
+			rows="5" paginator="true"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+			<f:facet name="header">Devoluciones Pendientes.</f:facet>
+			<p:column headerText="Cliente">
+				<h:outputText value="#{asignacion.cliente}" />
+			</p:column>
+			<p:column headerText="Vehiculo">
+				<h:outputText value="#{asignacion.vehiculo}" />
+			</p:column>
+			<p:column headerText="Fecha Entrega">
+				<h:outputText value="#{asignacion.fechaEntrega}" />
+			</p:column>
+			<p:column headerText="Fecha Devolución">
+				<h:outputText value="#{asignacion.fechaDevolucion}" />
+			</p:column>
+			<f:facet name="footer">
+				<p:outputLabel for="fecDevolucionEfectiva"
+					value="Fecha de Devolución Efectiva:" />
+				<p:calendar id="fecDevolucionEfectiva"
+					value="#{homeMB.fechaDevolucionEfectiva}" showOn="button" />
+				<p:commandButton id="botonDevolucion" process="asignacionesGrid"
+					icon="ui-icon-pencil" value="Devolución"
+					update="asignacionesGrid,:home:vehiculosGrid,:home:msg1,:home:grillaStatus"
+					action="#{homeMB.guardarDevolucion()}" />
+
+			</f:facet>
+		</p:dataTable>
+		<p:dialog header="Asignaciones" widgetVar="asignacionDialog"
+			modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+			width="50%">
+			<p:growl id="msg1" showDetail="true" />
+			<p:outputPanel id="asignacionDetail" style="text-align:center;">
+				<p:dataTable id="clientes" var="cliente" value="#{homeMB.clientes}"
+					rowKey="#{cliente.id}" selection="#{homeMB.selectedCliente}"
+					selectionMode="single" rows="5" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<f:facet name="header">
+			            Clientes.
+			        </f:facet>
+					<p:column headerText="Nombre">
+						<h:outputText value="#{cliente.nombres}" />
+					</p:column>
+					<p:column headerText="Apellido">
+						<h:outputText value="#{cliente.apellidos}" />
+					</p:column>
+					<p:column headerText="DNI">
+						<h:outputText value="#{cliente.nroDocumento}" />
+					</p:column>
+					<p:column headerText="TIPO">
+						<h:outputText value="#{cliente.tipo.descripcion}" />
+					</p:column>
+				</p:dataTable>
+				<h:panelGrid columns="2">
+					<p:outputLabel for="fecEntrega" value="Fecha de Entrega:" />
+					<p:calendar id="fecEntrega" value="#{homeMB.fechaEntrega}"
+						showOn="button" />
+					<p:outputLabel for="fecDevolucion" value="Fecha de Devolucion:" />
+					<p:calendar id="fecDevolucion" value="#{homeMB.fechaDevolucion}"
+						showOn="button" />
+				</h:panelGrid>
+				<p:commandButton value="Guardar"
+					update="vehiculosGrid,msg1,:home:asignacionDetail,:home:asignacionesGrid,:home:grillaStatus"
+					action="#{homeMB.guardarAsignacion}" />
+			</p:outputPanel>
+		</p:dialog>
+
+	</h:form>
+</h:body>
 </html>

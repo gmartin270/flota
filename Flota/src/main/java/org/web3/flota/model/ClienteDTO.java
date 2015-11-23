@@ -58,4 +58,9 @@ public class ClienteDTO {
 	public void setReputacion(ReputacionDTO reputacion) {
 		this.reputacion = reputacion;
 	}
+	
+	@Override
+	public String toString(){
+		return apellidos + ", " + nombres + " - " + tipo.getDescripcion() + ": " + nroDocumento;
+	}
 }

@@ -221,9 +221,9 @@ public class ClienteMB implements Serializable{
 		reputacion = selectedCliente.getReputacion();
 		id = selectedCliente.getId();
 		
-		nacionalidades = paisService.getPaises();
-		reputaciones = reputacionService.getReputaciones();
-		tiposDocumento = tipoDocumentoService.getTipos();
+		//nacionalidades = paisService.getPaises();
+		//reputaciones = reputacionService.getReputaciones();
+		//tiposDocumento = tipoDocumentoService.getTipos();
 		
 	}	
 	
@@ -245,6 +245,9 @@ public class ClienteMB implements Serializable{
 		
         try{
 			clientes = searchFac.getAll(ClienteDTO.class);
+			for (Object object : clientes) {
+				System.out.println("Nombre del cliente: "+((ClienteDTO)object).getNombres()+" - Tipo"+((ClienteDTO)object).getTipo().getId());
+			}
 		}catch (SearchObjectException so){
 			
 		}

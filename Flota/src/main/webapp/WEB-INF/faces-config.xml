@@ -40,6 +40,16 @@
 	</managed-bean>
 	
 	<managed-bean>
+		<managed-bean-name>homeMB</managed-bean-name>
+		<managed-bean-class>org.web3.flota.presentation.HomeMB</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>modeloTodosService</property-name> 
+			<value>#{modeloTodosService}</value>			
+		</managed-property>
+	</managed-bean>
+	
+	<managed-bean>
 		<managed-bean-name>paisService</managed-bean-name>
 		<managed-bean-class>org.web3.flota.presentation.service.PaisService</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
@@ -63,6 +73,12 @@
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	
+	<managed-bean>
+		<managed-bean-name>modeloTodosService</managed-bean-name>
+		<managed-bean-class>org.web3.flota.presentation.service.ModeloTodosService</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
 	<converter>
 	    <converter-id>paisConverter</converter-id>
 	    <converter-class>org.web3.flota.presentation.converter.PaisConverter</converter-class>
@@ -81,6 +97,11 @@
 	<converter>
 	    <converter-id>modeloConverter</converter-id>
 	    <converter-class>org.web3.flota.presentation.converter.ModeloConverter</converter-class>
+	</converter>
+	
+	<converter>
+	    <converter-id>modeloTodosConverter</converter-id>
+	    <converter-class>org.web3.flota.presentation.converter.ModeloTodosConverter</converter-class>
 	</converter>
 	
    	<navigation-rule>

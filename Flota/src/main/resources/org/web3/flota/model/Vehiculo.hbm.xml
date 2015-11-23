@@ -11,11 +11,11 @@
 		
 		<property name="dominio" 	column="dominio" 	type="java.lang.String"/>
 		<property name="categoria"	column="categoria"	type="java.lang.String"/>
+		<property name="disponible" column="disponible" type="boolean"/>
 		
 		<many-to-one name="tipo" 		cascade="all"/>
 		<many-to-one name="modelo" 		cascade="none"/>
 		<many-to-one name="poliza" 		cascade="all"/>
-		<many-to-one name="estado" 		cascade="none"/>
 		<many-to-one name="cedulaVerde"	cascade="all"/>
 	</class>
 	

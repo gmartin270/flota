@@ -9,29 +9,16 @@ import javax.faces.convert.FacesConverter;
 
 import org.web3.flota.model.ModeloDTO;
 import org.web3.flota.presentation.service.ModeloService;
+import org.web3.flota.presentation.service.ModeloTodosService;
 
 @FacesConverter("ModeloConverter")
-public class ModeloConverter implements Converter {
+public class ModeloTodosConverter implements Converter {
 
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
-		Integer valor = null;
-		
-        if(value != null && value.trim().length() > 0) {
+		if(value != null && value.trim().length() > 0) {
             try {
-                /*ModeloService service = (ModeloService) fc.getExternalContext().getApplicationMap().get("modeloService");
-                
-                for(int i=0; i<service.getModelos().size(); i++){
-                	if(((ModeloDTO)service.getModelos().get(i)).getId().equals(value)){
-                		item = service.getModelos().get(i);
-                		break;
-                	}
-                }*/
-                
-                //return item;
-            	valor = Integer.parseInt(value);
-            	valor = new Integer(valor.intValue() - 1);
-                ModeloService service = (ModeloService) fc.getExternalContext().getApplicationMap().get("modeloService");
-                return service.getModelos().get(valor);
+                ModeloTodosService service = (ModeloTodosService) fc.getExternalContext().getApplicationMap().get("modeloTodosService");
+                return service.getModelos().get(Integer.parseInt(value));
             } catch(NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid country."));
             }

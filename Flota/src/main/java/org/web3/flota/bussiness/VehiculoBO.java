@@ -10,6 +10,7 @@ import org.web3.flota.bussiness.factory.IObjectBO;
 import org.web3.flota.model.VehiculoDTO;
 import org.web3.flota.persist.FactoryObjectDAO;
 import org.web3.flota.persist.IGenericDAO;
+import org.web3.flota.persist.VehiculoDAO;
 
 public class VehiculoBO implements IObjectBO{
 	private static VehiculoBO instance;
@@ -34,15 +35,42 @@ public class VehiculoBO implements IObjectBO{
 		return null;
 	}
 	
-	public List<Object> getByVehiculo(Object vehiculoDTOToSearch){
-		return null;
+	public List<Object> getAll() throws SearchObjectException{
+		List<Object> vehiculos = dao.getAll();
+		
+		for (Object object : vehiculos) {
+			VehiculoDTO vehiculo = (VehiculoDTO)object;
+			
+			if(vehiculo.getDisponible())
+				vehiculo.setEstado("Disponible");
+			else
+				vehiculo.setEstado("En uso");
+		}
+		return vehiculos;
 	}
 	
-	public List<Object> getAll() throws SearchObjectException{
-		return dao.getAll();
+	public List<Object> getByVehiculo(VehiculoDTO vehiculoFiltro) throws SearchObjectException{
+		List<Object> vehiculos = ((VehiculoDAO)dao).getByVehiculo(vehiculoFiltro);
+		
+		for (Object object : vehiculos) {
+			VehiculoDTO vehiculo = (VehiculoDTO)object;
+			
+			if(vehiculo.getDisponible())
+				vehiculo.setEstado("Disponible");
+			else
+				vehiculo.setEstado("En uso");
+		}
+		return vehiculos;
+	}
+	
+	public Long getCountVehiculos(VehiculoDTO vehiculoFiltro, boolean allVehiculos) throws SearchObjectException{
+		return ((VehiculoDAO)dao).getCountVehiculos(vehiculoFiltro, allVehiculos);		
 	}
 	
 	public void createObject(Object vehiculoDTO) throws CreateObjectException{
+		//Seteo la disponibilidad del vehiculo en la creación
+		((VehiculoDTO)vehiculoDTO).setDisponible(true);
+		
 		dao.create(vehiculoDTO);
 	}
 	

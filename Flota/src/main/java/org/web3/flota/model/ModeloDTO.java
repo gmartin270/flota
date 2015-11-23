@@ -2,6 +2,7 @@ package org.web3.flota.model;
 
 public class ModeloDTO {
 	private String id;
+	private Long codigo;
 	private String nombre;
 	private MarcaDTO marca;
 	
@@ -27,5 +28,11 @@ public class ModeloDTO {
 	@Override
 	public String toString(){
 		return nombre;
+	}
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 }
